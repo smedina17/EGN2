@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: Ubuntu;
+    letter-spacing: 1px;
+  }
+  
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: rgb(50, 50, 50);
+    background: url(https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260) no-repeat 50% 50% fixed;
+    background-size: 130%;
+    overflow: hidden;
+  }
+  
+  .content-wrapper {
+    width: 100%;
+    height: 3000px;
+    padding: 1em 10%;
+  }
+  
+  .content-wrapper h1 {
+    margin: 0;
+    color: rgb(220, 120, 0);
+  }
+  
+  .content-wrapper p {
+    font-family: "Open Sans";
+    text-indent: 1.5em;
+  }
+  
+  .custom-file-upload {
+      border: 1px #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+  }
+  
+  button[type="submit"] {
+  background: #808080;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  
+  }
+  
+  button[type="submit"]:hover {
+  background: #016ABC;
+  color: #fff;
+  }
+  
