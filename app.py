@@ -28,7 +28,6 @@ msgInfo = ""
 
 container = []
 
-
 # for line in FileContent:
 #   #
 #   if "[" in line: #This next part will be a time stamp...
@@ -129,7 +128,60 @@ def authors():
             seen[temp.name] = 0
     return len(seen)
 
+def ammoStat(): #displays most recent ammo status
+  for i in range(len(container)):
+    temp = container[i]
+    if temp.name == "115 FAB BTL NCO":
+      if "SITREP" in temp.msg:
+        if "Ammo Status: Green" in temp.msg:
+          ammo = "Green"
+        elif "Ammo Status: Red" in temp.msg:
+          ammo = "Red"
+        elif "Ammo Status: Amber" in temp.msg:
+          ammo = "Amber"
+        elif "Ammo Status: Black" in temp.msg:
+          ammo = "Black"
+        elif "Ammo Status: N.A" in temp.msg:
+          ammo = "Not Available"
 
+  return ammo
+
+def fuelStat(): #displays most recent fuel status 
+  for i in range(len(container)):
+    temp = container[i]
+    if temp.name == "115 FAB BTL NCO":
+      if "SITREP" in temp.msg:
+        if "Fuel Status: Green" in temp.msg:
+          fuel = "Green"
+        elif "Fuel Status: Amber" in temp.msg:
+          fuel = "Amber"
+        elif "Fuel Status: Black" in temp.msg:
+          fuel = "Black"
+        elif "Fuel Status: Red" in temp.msg:
+          fuel = "Red"
+        elif "Fuel Status: N.A" in temp.msg:
+          fuel = "Not Available"
+
+  return fuel
+
+def staffStat(): #displays most recent personnel status 
+  for i in range(len(container)):
+    temp = container[i]
+    if temp.name == "115 FAB BTL NCO":
+      if "SITREP" in temp.msg:
+        if "Personnel Status: Red" in temp.msg:
+          personnel = "Red"
+        elif "Personnel Status: Green" in temp.msg:
+          personnel = "Green"
+        elif "Personnel Status: Amber" in temp.msg:
+          personnel = "Amber"
+        elif "Personnel Status: Black" in temp.msg:
+          personnel = "Black"
+        elif "Personnel Status: N.A" in temp.msg:
+          personnel = "Not Available"
+
+  return personnel
+ 
 # for i in range(len(sitreps)):
 #     temp = sitreps[i]
 #     print("\n\nSITREP report at: ", temp.timeStamp)
@@ -176,8 +228,11 @@ def final():
     authorTotal = authors()
     mostRecent = recentSitrep()
     salute = recentSalute()
-
-    return render_template("./final.html", totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute)
+    personnel = staffStat()
+    ammo = ammoStat()
+    fuel = fuelStat()
+    
+    return render_template("./final.html", totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute, ammoStatus = ammo, fuelStatus = fuel, personnelStatus = personnel)
 
 
 @app.route("/allSitreps", methods=["GET", "POST"])
