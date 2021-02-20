@@ -344,9 +344,14 @@ def processing():
 
 @app.route("/final", methods=["GET", "POST"])
 def final():
-    total_KIA, total_WIA, total_MIA = getImportantNumbers()
-    
     total = len(container)
+    total_KIA, total_WIA, total_MIA = getImportantNumbers()
+    first = container[0].timeStamp.split()
+    last = container[total - 1].timeStamp.split()
+    first = first[0]
+    last = last[0]
+    print(first)
+    print(last)
     authorTotal = authors()
     mostRecent = recentSitrep()
     salute = recentSalute()
@@ -354,7 +359,7 @@ def final():
     ammo = ammoStat()
     fuel = fuelStat()
     
-    return render_template("./final.html", KIA = total_KIA, MIA = total_MIA, WIA = total_WIA, totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute, ammoStatus = ammo, fuelStatus = fuel, personnelStatus = personnel)
+    return render_template("./final.html", firstDate = first, lastDate = last,KIA = total_KIA, MIA = total_MIA, WIA = total_WIA, totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute, ammoStatus = ammo, fuelStatus = fuel, personnelStatus = personnel)
 
 
 @app.route("/allSitreps", methods=["GET", "POST"])
@@ -382,7 +387,7 @@ def allMessages():
     return render_template("./allMessages.html", messages=container)
 
   
- @app.route("/searchUser", methods=["GET", "POST"])
+@app.route("/searchUser", methods=["GET", "POST"])
 def searchUser():
     if request.method == "POST":
         user = request.form['user']
