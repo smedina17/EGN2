@@ -31,10 +31,6 @@
             <h2>We Performed the Data Analysis for you! 🇺🇸</h2>
             <hr>
             <br>
-            
-            <h3>Upload File Time Frame From: <b>{{ firstDate }}</b> To: <b>{{ lastDate }}</b></h3>
-            <hr>
-            <br>
             <div class="row">
                 <div class="col-md-6">
                     <br>
@@ -45,46 +41,50 @@
                     <h4 class="text-left">Killed in Action (KIA) 💀: <b> {{ KIA }} </b>  &nbsp;&nbsp;&nbsp; Missing in Action (MIA) 👻: <b>{{ MIA }}</b> &nbsp;&nbsp;&nbsp;  </h4>  
                     
                     <br>
-                    <h2>Data Processing Dashboard</h2>
+                    <h3>File Info</h3>
+                <div class="text-left">
                     <hr>
-                    <p>Total messages in txt Transcript {{ totalMessages }}</p>
-                    <p>Total Unique message senders {{ totalAuthors }}</p>
-                    <h2>Most recent sitrep</h2>
-                    <hr>
+                    <h5>Total messages in txt Transcript <h2>{{ totalMessages }}</h2></h5>
+                    <h5>Total Unique message senders <h2>{{ totalAuthors }} </h2></h5>
+                    <h5>Message Transcript Date From - To <h2>{{ firstDate }} - {{ lastDate }}</h2></h5>
+                    <br>
+                    <h3>Most recent sitrep</h3>
+                    
                     <p>TimeStamp: {{ sitRep.timeStamp }}</p>
-                    <p>Message:</p>
-                    <p>{{ sitRep.msg }}</p>
+                    <h4>Message:</hh4>
+                    <h5>{{ sitRep.msg }}</h5>
+                    <br>
                     <h2>Most recent Salute Report</h2>
-                    <hr>
+                    
                     <p>TimeStamp: {{ saluteReport.timeStamp }}</p>
                     <p>Message:</p>
-                    <p>{{ saluteReport.msg }}</p>
-
+                    <h5>{{ saluteReport.msg }}</h5>
+                </div>
                 </div>
                 <div class="col-md-6">
                     <h3>Actions</h3>
                     <div class="actionStyles">
                         <form method="get" action="/allSitreps">
-                            <button class="btn" type="submit">Get All Sitreps</button>
+                            <button class="btn btn-outline-dark" type="submit">Get All Sitreps</button>
                         </form>
                     </div>
                     <br>
                     <div class="actionStyles">
                         <form method="get" action="/allReports">
-                            <button class="btn" type="submit">Get All Reports</button>
+                            <button class="btn btn-outline-dark" type="submit">Get All Reports</button>
                         </form>
                     </div>
                     <br>
                     <div class="actionStyles">
                         <form method="get" action="/allMessages">
-                            <button class="btn" type="submit">View All Messages</button>
+                            <button class="btn btn-outline-dark"  type="submit">View All Messages</button>
                         </form>
                     </div>
                     <br>
                     <div class="actionStyles">
                         <form method="POST" action="/searchUser">
                             <h3>Search for all messages from a User: </h3><input type="text" name="user" style="color:black"/>
-                            <input class="btn" type="submit" value="Submit" style="color:black" />
+                            <input class="btn btn-outline-dark" type="submit" value="Submit" style="color:black" />
                         </form>
                     </div>
                     <br>

@@ -44,16 +44,3 @@ body {
       cursor: pointer;
   }
   
-  button[type="submit"] {
-  background: #808080;
-  color: #fff;
-  border: 1px solid #eee;
-  border-radius: 20px;
-  
-  }
-  
-  button[type="submit"]:hover {
-  background: #016ABC;
-  color: #fff;
-  }
-  
