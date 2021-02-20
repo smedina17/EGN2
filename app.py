@@ -307,7 +307,15 @@ def userSearch(user):  # outputs all messages from an inputted user
 #     print("\n\nSITREP report at: ", temp.timeStamp)
 #     print("Content of SITREP: ", temp.msg)
 
-
+def getUserInfo(): 
+  seen = {}
+  for i in range(len(container)):
+    temp = container[i]
+    if temp.name in seen:
+      seen[temp.name] = seen[temp.name] + 1
+    else:
+      seen[temp.name] = 1
+  return seen
 app = Flask(__name__)
 
 @app.route('/')
@@ -397,3 +405,10 @@ def searchUser():
         userList == ""
 
     return render_template("./searchUser.html", userList=userList)  
+
+@app.route("/userInfo", methods=["GET", "POST"])
+def userInfo():
+    seen = getUserInfo()
+    
+
+    return render_template("./userInfo.html", people = seen)  
