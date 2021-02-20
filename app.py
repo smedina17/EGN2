@@ -7,6 +7,7 @@ from flask import request, redirect
 Start script
  . venv/bin/activate
  python -m flask run
+ bandi made this comment
 '''
 
 
