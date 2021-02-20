@@ -294,6 +294,13 @@ def parseIntMsgScrapper(messages):
 
   return total
   
+def userSearch(user):  # outputs all messages from an inputted user
+    ret = []
+    for i in range(len(container)):
+        temp = container[i]
+        if temp.name == user:
+            ret.append(temp)
+    return ret  # returns all the messages containing the user in the .name.
   
 # for i in range(len(sitreps)):
 #     temp = sitreps[i]
@@ -374,3 +381,14 @@ def allMessages():
 
     return render_template("./allMessages.html", messages=container)
 
+  
+ @app.route("/searchUser", methods=["GET", "POST"])
+def searchUser():
+    if request.method == "POST":
+        user = request.form['user']
+
+    userList = userSearch(user)
+    if userList == []:
+        userList == ""
+
+    return render_template("./searchUser.html", userList=userList)  
