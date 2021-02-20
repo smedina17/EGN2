@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Markup
 from flask import render_template
 from flask import request, redirect
 
@@ -8,6 +8,11 @@ Start script
  . venv/bin/activate
  python -m flask run
  bandi made this comment
+
+ KIA
+ MIA
+ WIA
+
 '''
 
 
@@ -182,7 +187,114 @@ def staffStat(): #displays most recent personnel status
           personnel = "Not Available"
 
   return personnel
- 
+
+
+def getImportantNumbers():
+
+  '''
+   KIA
+   MIA
+    WIA
+ '''
+  kiaMsg, miaMsg, wiaMsg, size = [], [], [], len(container)
+  
+
+  for i in range(size):
+      msg = container[i].msg
+      if 'kia' in msg or 'KIA' in msg:
+        kiaMsg.append(msg.upper())
+      elif 'mia' in msg or 'MIA' in msg:
+        miaMsg.append(msg.upper())
+      elif 'wia' in msg or 'WIA' in msg:
+        wiaMsg.append(msg.upper())
+      else:
+        pass
+  
+  
+  m1, k1, w1 = parseMsgScraper(kiaMsg)
+  m2, k2, w2 = parseMsgScraper(wiaMsg)
+  
+
+
+  
+  
+
+  
+  # print(miaMsgFinal)
+  # print(wiaMsgFinal)
+
+  #kiaInt, miaInt, wiaInt = parseIntMsgScrapper(kiaMsgFinal), parseIntMsgScrapper(miaMsgFinal), parseIntMsgScrapper(wiaMsgFinal)
+  kiaIntArr1 = parseIntMsgScrapper(k1)
+  k1Int = sum(kiaIntArr1)
+  kiaIntArr2 = parseIntMsgScrapper(k2)
+  k2Int = sum(kiaIntArr2)
+
+
+  miaIntArr1 = parseIntMsgScrapper(m1)
+  m1Int = sum(miaIntArr1)
+
+  miaIntArr2 = parseIntMsgScrapper(m2)
+  m2Int = sum(miaIntArr1)
+  
+  
+
+
+
+  wiaIntArr1 = parseIntMsgScrapper(w1)
+  w1Int = sum(wiaIntArr1)
+
+  wiaIntArr2 = parseIntMsgScrapper(w2)
+  w2Int = sum(wiaIntArr1)
+  
+  
+
+
+  total_KIA = k1Int + k2Int
+  total_WIA = w1Int + w2Int
+  total_MIA = m1Int + m2Int
+
+  # print("total kia: " + str(total_KIA) + " total wia: " + str(total_WIA) + " total mia:" + str(total_MIA))
+  return total_KIA, total_WIA, total_MIA
+
+
+
+def parseMsgScraper(messages):
+  # init
+  size= len(messages)
+  miaRet, kiaRet, wiaRet = [], [], []
+
+  
+  for i in range(size):
+    msg = messages[i]
+    
+    for j in range(len(msg)):
+      msgChar = msg[j]
+      if msgChar == 'M':
+          if 'MIA' in msg[j:j+4]:
+            miaRet.append(msg[j:j+10])
+          
+      elif msgChar == 'K':
+          if 'KIA' in msg[j:j+4]:
+            kiaRet.append(msg[j:j+10])
+      elif msgChar == 'W':
+          if 'WIA' in msg[j:j+4]:
+            wiaRet.append(msg[j:j+10])
+          
+      else:
+        pass
+      
+  return miaRet, kiaRet, wiaRet
+    
+def parseIntMsgScrapper(messages):
+  total = []
+  for message in messages:
+    for msg in message.split():
+      if msg.isdigit():
+        total.append(int(msg))  
+
+  return total
+  
+  
 # for i in range(len(sitreps)):
 #     temp = sitreps[i]
 #     print("\n\nSITREP report at: ", temp.timeStamp)
@@ -225,6 +337,8 @@ def processing():
 
 @app.route("/final", methods=["GET", "POST"])
 def final():
+    total_KIA, total_WIA, total_MIA = getImportantNumbers()
+    
     total = len(container)
     authorTotal = authors()
     mostRecent = recentSitrep()
@@ -233,7 +347,7 @@ def final():
     ammo = ammoStat()
     fuel = fuelStat()
     
-    return render_template("./final.html", totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute, ammoStatus = ammo, fuelStatus = fuel, personnelStatus = personnel)
+    return render_template("./final.html", KIA = total_KIA, MIA = total_MIA, WIA = total_WIA, totalMessages=total, totalAuthors=authorTotal, sitRep = mostRecent, saluteReport = salute, ammoStatus = ammo, fuelStatus = fuel, personnelStatus = personnel)
 
 
 @app.route("/allSitreps", methods=["GET", "POST"])
@@ -259,3 +373,4 @@ def allMessages():
     
 
     return render_template("./allMessages.html", messages=container)
+
