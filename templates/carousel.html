@@ -12,20 +12,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
        
 
-       <style>
-        .carousel{
-            background: rgba(255, 255, 255, 0);
-            margin-top: 20px;
-            
-        }
-        .carousel-item{
-            text-align: center;
-            min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-        }
-        .carousel-indicators li, .carousel a{
-            cursor: pointer;
-        }
-        </style>
+       
 
         <script>
         $(document).ready(function(){
@@ -56,7 +43,7 @@
        
     </head>
     <body>
-        <div class="container-lg my-3">
+        <div class="stacks container-lg my-3">
             <div id="myCarousel" class="carousel slide" data-interval="false" >
                 <!-- Carousel indicators -->
                 <ol class="carousel-indicators">
@@ -70,7 +57,7 @@
                 {% for post in messages %}
                     <div class="carousel-item {% if loop.index == 1 %} active {% endif %}" id="slide{{ loop.index }}">
                         <h5> {{ messages[totalMessages - loop.index].msg }} </h5>
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="text-center">
                             
                             <h5>sent by {{ messages[totalMessages - loop.index].name }} </h5>
                             <h6>{{ messages[totalMessages - loop.index].timeStamp }}</h6>
@@ -93,5 +80,32 @@
             </form>
          </div>
          </body>
-  
+         <style>
+            button {
+                margin-top: 2.5rem;
+                background-color:#ffcc01;
+                color: white;
+        
+            }
+             body {
+                 color: black;
+             }
+            .stacks {
+                margin-top: 2.5rem;
+            }
+            .carousel{
+                background: rgba(221, 225, 228, 0);
+                margin-top: 20px;
+                
+            }
+            .carousel-item{
+                margin-top: 5rem;
+                text-align: center;
+                min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+            }
+            .carousel-indicators li, .carousel a{
+                cursor: pointer;
+                background: black;
+            }
+            </style>
 </html>
