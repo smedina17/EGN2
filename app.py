@@ -412,3 +412,13 @@ def userInfo():
     
 
     return render_template("./userInfo.html", people = seen)  
+   
+   
+   
+# updates carousel with messages
+@app.route("/carousel", methods = ["GET", "POST"])
+def carousel():
+    total = len(container)
+    
+    
+    return render_template("./carousel.html", totalMessages = total, messages = container )   
