@@ -1,0 +1,40 @@
+button {
+  
+  margin-top: 2.5rem;
+  background-color:#ffcc01;
+  color: white;
+    
+}
+body {
+
+  color: black;
+
+}
+.stacks {
+
+  margin-top: 2.5rem;
+
+}
+.carousel{
+
+  background: rgba(255,255,255);
+  margin-top: 20px;
+
+}     
+.carousel-item{
+            
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+  max-width: 90%;
+  margin-left: 50px;
+
+}
+.carousel-indicators li, .carousel a{
+
+  cursor: pointer;
+  background: grey;
+  max-width: 30px;
+            
+}
